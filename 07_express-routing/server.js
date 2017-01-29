@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const port = '3002';
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({"extendded": true}));
@@ -26,8 +27,9 @@ app.all('/sub/*', (req, res)=> {
 app.post('/post', middleware, (req, res)=> {
   if (Object.keys(req.body).length) {
     res.json(req.body);
-  };
-  res.sendStatus(404);
+  } else {
+    res.sendStatus(404);
+  }
 });
 
 function middleware(req, res, next) {
@@ -37,6 +39,6 @@ function middleware(req, res, next) {
   res.sendStatus(401);
 };
 
-app.listen(3000, ()=> {
-  console.log('listening port 3000');
+app.listen(port, ()=> {
+  console.log(`listening port: ${port}`);
 })
