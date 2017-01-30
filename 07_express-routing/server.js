@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const port = '3002';
+const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({"extendded": true}));
@@ -41,4 +41,4 @@ function middleware(req, res, next) {
 
 app.listen(port, ()=> {
   console.log(`listening port: ${port}`);
-})
+});
